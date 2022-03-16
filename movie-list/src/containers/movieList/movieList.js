@@ -1,10 +1,10 @@
 import {Button, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './MovieListPage.css';
-import Movie from '../components/Movie';
+import './movieList.css';
+import Movie from '../../components/movie';
 import {useState, useEffect} from 'react';
 
-function MovieListPage(){
+function MovieList(){
     const [data, setData] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
@@ -28,10 +28,6 @@ function MovieListPage(){
     console.log(data);
     return(
         <div className="MovieListPage">
-            <header>
-                <h1>The Most Popular Movies</h1>
-            </header>
-            <nav><p>navigation bar</p></nav>
             <h2>Movies List Page</h2>
             <main>
                 <div className="sortButtons">
@@ -59,4 +55,4 @@ function MovieListPage(){
     )
 }
 
-export default MovieListPage;
+export default MovieList;
