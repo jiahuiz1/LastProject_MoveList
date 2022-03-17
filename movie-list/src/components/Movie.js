@@ -6,7 +6,7 @@ function Movie(props){
     const item = props.item;
     return(
         <div className="movie">
-        <Image className="image"src={IMGPATH + item.poster_path}/>
+        <Image className="image"src={IMGPATH + item.poster_path} alt="Image not available"/>
         <div>
             <Button variant="danger">Like</Button>
             <Button variant="secondary">Block</Button>
