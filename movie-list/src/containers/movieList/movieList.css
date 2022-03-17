@@ -1,0 +1,47 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.sortButtons Button{
+    margin: 10px;
+}
+
+.pageNav{
+    border: 1px dotted black;
+    border-radius: 5px;
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: large;
+}
+
+
+.movieBlock{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.movie{
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie Button{
+    margin-right: 20px;
+    margin-left: 20px
+}
+
+.image{
+    max-width: 100%;
+}
+
+.movieInfo{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
