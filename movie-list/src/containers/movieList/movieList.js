@@ -15,14 +15,14 @@ function MovieList(props){
     const handlePageNav = (e) => {
         if(e.target.innerHTML === "Next"){
             pageNumber += 1;
-            props.fetchMovies("popularity", pageNumber);
+            props.fetchMovies("popularity", pageNumber,"desc");
         }   
 
         // problem: need to make go to previous page, no fetching request
         else if(e.target.innerHTML === "Prev"){
             if(pageNumber > 1){
                 pageNumber -= 1;
-                props.fetchMovies("popularity", pageNumber);
+                props.fetchMovies("popularity", pageNumber,"desc");
             }
         }      
     }

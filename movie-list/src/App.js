@@ -5,6 +5,7 @@ import Home from './containers/home/home';
 import MovieList from './containers/movieList/movieList';
 import MovieLikeList from './containers/movieLikeList/movieLikeList';
 import MovieBlockList from './containers/movieBlockList/movieBlockList';
+import NavMenu from './components/navMenu';
 import {actions} from './actionCreators';
 import {connect} from 'react-redux';
 
@@ -17,32 +18,7 @@ function App(props) {
           <h1>Top Rated Movies List</h1>
         </header>
         <div className="nav-container-menu">
-          <nav className="nav-container-menu-items">
-              <Link className="btn btn-primary btn-lg" role="button" to="/">
-                Home
-              </Link>
-              <Link
-                className="btn btn-primary btn-lg"
-                role="button"
-                to="/movieList"
-              >
-                Movie List
-              </Link>
-              <Link
-                className="btn btn-primary btn-lg"
-                role="button"
-                to="/movieBlockList"
-              >
-                Movie Block List
-              </Link>
-              <Link
-                className="btn btn-primary btn-lg"
-                role="button"
-                to="/movieLikeList"
-              >
-                Movie Like List
-              </Link>
-          </nav>
+          <NavMenu></NavMenu>
         </div>
 
         <Routes>
@@ -73,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
       // After changing , call this function
       likeMovie: (movie) => dispatch(actions.likeMovie(movie)),
       blockMovie: (movie) => dispatch(actions.blockMovie(movie)),
-      fetchMovies: (name, number) => dispatch(actions.fetchMovies(name, number))
+      fetchMovies: (name, number,order) => dispatch(actions.fetchMovies(name, number,order))
   };
 };
 
