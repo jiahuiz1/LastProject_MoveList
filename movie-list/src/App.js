@@ -8,7 +8,6 @@ import MovieBlockList from './containers/movieBlockList/movieBlockList';
 import {actions} from './actionCreators';
 import {connect} from 'react-redux';
 
-
 function App(props) {
   return (
     <div className="App">
@@ -48,6 +47,7 @@ function App(props) {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/movieList" element={<MovieList {...props}/>}/>
+          <Route path="/movieList" element={<MovieList/>}/>
           <Route path="/movieBlockList" element={<MovieBlockList/>}/>
           <Route path="/movieLikeList" element={<MovieLikeList/>}/>
         </Routes>
