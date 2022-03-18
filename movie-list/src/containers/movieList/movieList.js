@@ -2,33 +2,36 @@ import {Button, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './movieList.css';
 import Movie from '../../components/movie';
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 
-function MovieList(){
-    const [data, setData] = useState([]);
-    const [pageNumber, setPageNumber] = useState(1);
-    const [totalResults, setTotalResults] = useState(0);
-    const [totalPage, setTotalPage] = useState(0);
+function MovieList(props){
+    let pageNumber = props.initialPageNumber;
 
-    useEffect(()=>{
-        fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=0f207dd93db6d0bd617a7ee5e6e6edee&page=${pageNumber}&append_to_response=production_companies`)
-        .then((result) => {
-            return result.json();
-        })
-        .then((d)=>{
-            //console.log(d);
-            const temp = d.results;
-            setData([...data, ...temp]);
-            setPageNumber(d.page);
-            setTotalResults(d.total_results);
-            setTotalPage(d.total_pages);
-        })
+    // initially load the first page of movie list
+    useEffect(() => {
+        props.fetchMovies("popularity", 1);
     }, []);
 
-    console.log(data);
+    const handlePageNav = (e) => {
+        if(e.target.innerHTML === "Next"){
+            pageNumber += 1;
+            props.fetchMovies("popularity", pageNumber);
+        }   
+
+        // problem: need to make go to previous page, no fetching request
+        else if(e.target.innerHTML === "Prev"){
+            if(pageNumber > 1){
+                pageNumber -= 1;
+                props.fetchMovies("popularity", pageNumber);
+            }
+        }      
+    }
+
     return(
         <div className="MovieListPage">
-            <h2>Movies List Page</h2>
+            <header>
+                <h2>Movies List Page</h2>
+            </header>
             <main>
                 <div className="sortButtons">
                     <Button size="lg">Title</Button>
@@ -36,16 +39,16 @@ function MovieList(){
                     <Button size="lg">Vote Average</Button>
                     <Button size="lg">Release Date</Button>
                 </div>
-                {data.length===0 && <Spinner animation="border" variant="primary"/>}
+                {props.movieList.length===0 && <Spinner animation="border" variant="primary"/>}
                 <div className="pageNav">
-                    <Button variant="dark">Prev</Button>
-                    <div className="pageInfo">Page {pageNumber}/Total {totalPage} pages of {totalResults} results</div>
-                    <Button variant="dark">Next</Button>
+                    <Button variant="dark" onClick={handlePageNav}>Prev</Button>
+                    <div className="pageInfo">Page {pageNumber}/Total {props.initialTotalPages} pages of {props.initialTotalResults} results</div>
+                    <Button variant="dark" onClick={handlePageNav}>Next</Button>
                 </div>
                 <div className="movieBlock">
-                    {data.length > 0 && data.map((item) => {
+                    {props.movieList.length > 0 && props.movieList.map((item, index) => {
                         return (
-                            <Movie item={item}/>
+                            <Movie key={index} item={item}/>
                         )
                     })}
                 </div>
@@ -54,5 +57,4 @@ function MovieList(){
         </div>
     )
 }
-
 export default MovieList;
