@@ -16,9 +16,6 @@ const reducer = (state = initialState, action = {}) => {
             return{
                 // add the movie to the liked list
                 ...state,
-                initialPageNumber: action.payload.page,
-                initialTotalResults: action.payload.total_results,
-                initialTotalPages: action.payload.total_pages,
                 movieId:action.payload.results.id,
                 likedList: [...action.payload.results]
             }
@@ -26,6 +23,7 @@ const reducer = (state = initialState, action = {}) => {
         case Actions.BLOCK:
             return{
                 // add the movie to the blocked list
+                
             }
         // initialize the movieList
         case Actions.SET_MOVIES:

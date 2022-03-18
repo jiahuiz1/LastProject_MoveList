@@ -6,12 +6,14 @@ import { useState } from 'react'
 function Movie(props){
     const IMGPATH = "https://image.tmdb.org/t/p/w1280";
     const item = props.item;
+    let movieId= props.movieId;
 
     const [disabledLike, setDisabledLike] = useState(false)
 
     function handleLike(e) {
         setDisabledLike(true)
         //adding selected movie id to like list 
+        props.fetchLikeMovies(movieId);
         console.log.apply(props.likedList);
     }
     function handleBlock() {
@@ -28,7 +30,7 @@ function Movie(props){
         <div className="movieInfo">
             <p>{item.original_title}</p>
             <p>Release Date: {item.release_date}</p>
-            <p>Vote Count: {item.vote_average} | Average Score: {item.vote_count}</p>
+            <p>Average Score: {item.vote_average} | Vote Count: {item.vote_count}</p>
             <p>{item.overview}</p>
         </div>
     </div>

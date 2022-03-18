@@ -28,9 +28,21 @@ const fetchMovies = (fetchName, pageNumber,order) => {
         });
     }
 }
+const fetchLikeMovies=(movieId)=>{
+    return (dispatch) => {
+        const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=ec90af707a599c7b1267e264bad8a7b7&language=en-US`;
+        fetch(url).
+        then((res) => {return res.json()}).
+        then((data) => {
+            console.log(data);
+            dispatch(likeMovie(data))
+        });
+    }
+}
 
 export const actions = {
     likeMovie,
     blockMovie,
-    fetchMovies
+    fetchMovies,
+    fetchLikeMovies
 };

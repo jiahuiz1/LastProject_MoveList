@@ -1,11 +1,15 @@
 import {Button, Spinner} from 'react-bootstrap';
+import { ToggleButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './movieList.css';
 import Movie from '../../components/movie';
 import {useEffect} from 'react';
+import React from 'react';
 
 function MovieList(props){
     let pageNumber = props.initialPageNumber;
+    //let isAsc=true;
+    const [isAsc, setisAsc] = React.useState(false);
 
     // initially load the first page of movie list
     useEffect(() => {
@@ -26,7 +30,49 @@ function MovieList(props){
             }
         }      
     }
-
+    const handleSort=(e)=>{
+        console.log("is asc:"+isAsc);
+        if(e.target.innerHTML === "Title"){
+            if(isAsc === true){
+                setisAsc(false);
+                props.fetchMovies("original_title", pageNumber,"asc"); 
+            }
+            else if(isAsc === false){
+                setisAsc(true);
+                props.fetchMovies("original_title", pageNumber,"desc");   
+            }
+        }
+        else if(e.target.innerHTML === "Vote Count"){
+            if(isAsc === true){
+                setisAsc(false);
+                props.fetchMovies("vote_count", pageNumber,"asc"); 
+            }
+            else if(isAsc === false){
+                setisAsc(true);
+                props.fetchMovies("vote_count", pageNumber,"desc");   
+            }
+        }
+        else if(e.target.innerHTML === "Vote Average"){
+            if(isAsc === true){
+                setisAsc(false);
+                props.fetchMovies("vote_average", pageNumber,"asc"); 
+            }
+            else if(isAsc === false){
+                setisAsc(true);
+                props.fetchMovies("vote_average", pageNumber,"desc");   
+            }
+        }
+        else if(e.target.innerHTML === "Release Date"){
+            if(isAsc === true){
+                setisAsc(false);
+                props.fetchMovies("release_date", pageNumber,"asc"); 
+            }
+            else if(isAsc === false){
+                setisAsc(true);
+                props.fetchMovies("release_date", pageNumber,"desc");   
+            }
+        }
+    }
     return(
         <div className="MovieListPage">
             <header>
@@ -34,10 +80,12 @@ function MovieList(props){
             </header>
             <main>
                 <div className="sortButtons">
-                    <Button size="lg">Title</Button>
-                    <Button size="lg">Vote Count</Button>
-                    <Button size="lg">Vote Average</Button>
-                    <Button size="lg">Release Date</Button>
+                    
+
+                    <Button size="lg" onClick={handleSort} >Title</Button>
+                    <Button size="lg" onClick={handleSort} >Vote Count</Button>
+                    <Button size="lg"onClick={handleSort} >Vote Average</Button>
+                    <Button size="lg"onClick={handleSort} >Release Date</Button>
                 </div>
                 {props.movieList.length===0 && <Spinner animation="border" variant="primary"/>}
                 <div className="pageNav">
