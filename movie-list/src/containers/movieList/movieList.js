@@ -5,28 +5,45 @@ import Movie from '../../components/movie';
 import {useEffect} from 'react';
 
 function MovieList(props){
-    let pageNumber = props.initialPageNumber;
+    let pageNumber = props.pageNumber;
+    let loadedPages = Array.from(props.loadedPages);
 
     // initially load the first page of movie list
     useEffect(() => {
-        props.fetchMovies("popularity", 1);
+        // if first time mounts, fetch data
+        // if not, get data from previous loaded data
+        if(pageNumber === 0) props.fetchMovies("popularity", 1, "desc");
+        else{
+            if(loadedPages.includes(pageNumber)){
+                props.loadData(pageNumber);
+            }
+            else{
+                props.fetchMovies("popularity", pageNumber,"desc");
+            }
+        }
     }, []);
 
+    // Page Nav, avoid refetching data by storing fetched data into a loadedData array
     const handlePageNav = (e) => {
         if(e.target.innerHTML === "Next"){
             pageNumber += 1;
-            props.fetchMovies("popularity", pageNumber,"desc");
+            if (loadedPages.includes(pageNumber)){
+                props.loadData(pageNumber)
+            }
+            else props.fetchMovies("popularity", pageNumber,"desc");
         }   
 
-        // problem: need to make go to previous page, no fetching request
         else if(e.target.innerHTML === "Prev"){
-            if(pageNumber > 1){
-                pageNumber -= 1;
-                props.fetchMovies("popularity", pageNumber,"desc");
+            pageNumber -= 1;
+            if (loadedPages.includes(pageNumber)){
+                props.loadData(pageNumber)
             }
+            else props.fetchMovies("popularity", pageNumber,"desc");
         }      
     }
 
+    //console.log(props.movieList);
+    console.log(props.loadedData);
     return(
         <div className="MovieListPage">
             <header>
@@ -48,7 +65,7 @@ function MovieList(props){
                 <div className="movieBlock">
                     {props.movieList.length > 0 && props.movieList.map((item, index) => {
                         return (
-                            <Movie key={index} item={item}/>
+                            <Movie key={index} {...props} item={item}/>
                         )
                     })}
                 </div>

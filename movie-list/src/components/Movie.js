@@ -1,18 +1,30 @@
 import {Button, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { useState } from 'react'
 
+// useRef() for like button
 function Movie(props){
     const IMGPATH = "https://image.tmdb.org/t/p/w1280";
     const item = props.item;
 
-    const [disabledLike, setDisabledLike] = useState(false)
 
-    function handleLike(e) {
-        setDisabledLike(true)
+    function handleLike() {
+        // set the current movie's like field in movieList to true
+        item.like = true;
+        const id = item.id;
+
+        // loop through the loaded data to find the current movie
+        // then set like field to true
+        props.loadedData.forEach((e1) => {
+            e1.results.forEach((e2) => {
+                if(e2.id === id){
+                    e2.like = true;
+                }
+            });
+        });
+
         //adding selected movie id to like list 
-        console.log.apply(props.likedList);
+        props.likeMovie(item);
     }
     function handleBlock() {
         
@@ -20,18 +32,18 @@ function Movie(props){
 
     return(
         <div className="movie">
-        <Image className="image"src={IMGPATH + item.poster_path} alt="Image not available"/>
-        <div>
-            <Button variant="danger" disabled={disabledLike} onClick={handleLike}>Like</Button>
-            <Button variant="secondary" onClick={handleBlock}>Block</Button>
+            <Image className="image"src={IMGPATH + item.poster_path} alt="Image not available"/>
+            <div>
+                <Button variant="danger" disabled={item.like ? true : false} onClick={handleLike}>{item.like ? "Liked" : "Like"}</Button>
+                <Button variant="secondary" onClick={handleBlock}>Block</Button>
+            </div>
+            <div className="movieInfo">
+                <p>{item.original_title}</p>
+                <p>Release Date: {item.release_date}</p>
+                <p>Vote Count: {item.vote_average} | Average Score: {item.vote_count}</p>
+                <p>{item.overview}</p>
+            </div>
         </div>
-        <div className="movieInfo">
-            <p>{item.original_title}</p>
-            <p>Release Date: {item.release_date}</p>
-            <p>Vote Count: {item.vote_average} | Average Score: {item.vote_count}</p>
-            <p>{item.overview}</p>
-        </div>
-    </div>
     );
 }
 

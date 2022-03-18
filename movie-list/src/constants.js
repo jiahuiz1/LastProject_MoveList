@@ -4,4 +4,10 @@ const LIKE = "LIKE";
 
 const BLOCK = "BLOCK";
 
-export default {SET_MOVIES, LIKE, BLOCK};
+const LOAD_DATA = "LOAD_DATA";
+
+const DELETE_LIKE = "DELETE_LIKE";
+
+const BLOCK_LIKE = "BLOCK_LIKE";
+
+export default {SET_MOVIES, LIKE, BLOCK, LOAD_DATA, DELETE_LIKE, BLOCK_LIKE};

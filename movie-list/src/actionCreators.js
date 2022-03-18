@@ -1,8 +1,9 @@
+import { Action } from 'history';
 import Actions from './constants';
 
 const likeMovie = (payload) => ({
     type: Actions.LIKE,
-    payload //movie
+    payload
 })
 
 const blockMovie = (payload) => ({
@@ -10,20 +11,31 @@ const blockMovie = (payload) => ({
     payload
 })
 
+
 const setMovies = (payload) => ({
     type: Actions.SET_MOVIES,
     payload
 });
 
+const loadData = (payload) => ({
+    type: Actions.LOAD_DATA,
+    payload
+})
+
+const deleteLikedMovie = (payload) => ({
+    type: Actions.DELETE_LIKE,
+    payload
+})
+
 // thunk
 // fetch data based on the sort-by type and page number
-const fetchMovies = (fetchName, pageNumber,order) => {
+const fetchMovies = (fetchName, pageNumber, order) => {
     return (dispatch) => {
         const url = `https://api.themoviedb.org/3/discover/movie?sort_by=${fetchName}.${order}&api_key=0f207dd93db6d0bd617a7ee5e6e6edee&page=${pageNumber}&append_to_response=production_companies`;
         fetch(url).
         then((res) => {return res.json()}).
         then((data) => {
-            console.log(data);
+            //console.log(data);
             dispatch(setMovies(data))
         });
     }
@@ -32,5 +44,7 @@ const fetchMovies = (fetchName, pageNumber,order) => {
 export const actions = {
     likeMovie,
     blockMovie,
-    fetchMovies
+    fetchMovies,
+    loadData,
+    deleteLikedMovie
 };
