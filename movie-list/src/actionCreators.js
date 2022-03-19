@@ -11,11 +11,11 @@ const blockMovie = (payload) => ({
     payload
 })
 
-
 const setMovies = (payload) => ({
     type: Actions.SET_MOVIES,
     payload
 });
+
 
 const loadData = (payload) => ({
     type: Actions.LOAD_DATA,

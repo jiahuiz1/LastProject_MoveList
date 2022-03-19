@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from './containers/home/home';
 import MovieList from './containers/movieList/movieList';
 import MovieLikeList from './containers/movieLikeList/movieLikeList';
-import MovieBlockList from './containers/movieBlockList/movieBlockList';
+import MovieBlockList from './containers/movieBlockList/movieBlockList'
 // import NavMenu from './components/navMenu';
 import {actions} from './actionCreators';
 import {connect} from 'react-redux';
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
       // click pageNumber will change the page Number
       // After changing , call this function
       likeMovie: (movie) => dispatch(actions.likeMovie(movie)),
-      blockMovie: (movie) => dispatch(actions.blockMovie(movie)),
+      blockMovie: (movie) => dispatch(actions.blockMovie(movie))
       fetchMovies: (name, number, order) => dispatch(actions.fetchMovies(name, number, order)),
       loadData: (number) => dispatch(actions.loadData(number)),
       deleteLikedMovie: (index) => dispatch(actions.deleteLikedMovie(index))
