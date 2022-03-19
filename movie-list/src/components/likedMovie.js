@@ -1,5 +1,6 @@
 import {Button, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Movie from './movie';
 
 function LikedMovie(props){
     const item = props.item;
@@ -7,10 +8,13 @@ function LikedMovie(props){
 
     const handleLikeMovie = (e)=>{
         if(e.target.innerHTML === "Delete"){
-            //props.likedList.splice(props.index, 1);
             props.deleteLikedMovie(props.index);
         }
         //console.log(props.likedList);
+        else if(e.target.innerHTML === "Block") {
+            props.blockLikedMovie(props.index);
+            props.blockMovie(item);
+        }
     }
 
     return(

@@ -4,7 +4,7 @@ import "./movieLikeList.css"
 
 function MovieLikeList(props){
   //console.log(props.likedList);
- 
+  console.log(props.blockedList);
   return (
     <div>
       <header>
