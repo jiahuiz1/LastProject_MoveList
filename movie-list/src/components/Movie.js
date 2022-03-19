@@ -2,7 +2,6 @@ import {Button, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 
-// useRef() for like button
 function Movie(props){
     const IMGPATH = "https://image.tmdb.org/t/p/w1280";
     const item = props.item;
@@ -32,15 +31,17 @@ function Movie(props){
 
     return(
         <div className="movie">
-            <Image className="image"src={IMGPATH + item.poster_path} alt="Image not available"/>
+            <div className='image-container'>
+                <Image className="movie-image"src={IMGPATH + item.poster_path} alt="Image not available"/>
+                </div>
             <div>
                 <Button variant="danger" disabled={item.like ? true : false} onClick={handleLike}>{item.like ? "Liked" : "Like"}</Button>
                 <Button variant="secondary" onClick={handleBlock}>Block</Button>
             </div>
-            <div className="movieInfo">
+            <div className="movie-Info">
                 <p>{item.original_title}</p>
                 <p>Release Date: {item.release_date}</p>
-                <p>Vote Count: {item.vote_average} | Average Score: {item.vote_count}</p>
+                <p>Average Score: {item.vote_average} | Vote Count: {item.vote_count}</p>
                 <p>{item.overview}</p>
             </div>
         </div>

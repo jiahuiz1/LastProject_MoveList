@@ -11,7 +11,9 @@ const initialState = {
     likedList: [],
     blockedList: [],
     loadedPages: setPage, // store fetched pages and data
-    loadedData: []
+    loadedData: [], // fetched data to avoid refetching
+    sortByName: "popularity",
+    order: "desc"
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -37,8 +39,7 @@ const reducer = (state = initialState, action = {}) => {
             
             //console.log(action.payload.results);
 
-            // fix later
-            state.loadedPages.add(action.payload.page)
+            state.loadedPages.add(action.payload.page);
 
             return {
                 ...state,
@@ -47,6 +48,29 @@ const reducer = (state = initialState, action = {}) => {
                 pageNumber: action.payload.page,
                 movieList: [...action.payload.results],
                 loadedData: [...state.loadedData, {...action.payload}]
+            };
+
+            // clear all the loaded pages and data, then fetch new data
+        case Actions.SORT_MOVIES:
+            // add a like field and a block field for each movie's info
+            action.payload.results.forEach((element, index) => {
+                action.payload.results[index] = {...element, like: false};
+            })    
+            
+            state.loadedPages.clear();
+
+            state.loadedPages.add(action.payload.page);
+            
+            
+            return{
+                ...state,
+                initialTotalResults: action.payload.total_results,
+                initialTotalPages: action.payload.total_pages,
+                pageNumber: action.payload.page,
+                movieList: [...action.payload.results],
+                loadedData: [{...action.payload}],
+                sortByName: action.payload.sortByName,
+                order: action.payload.order
             };
 
         case Actions.LOAD_DATA:

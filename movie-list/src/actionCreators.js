@@ -17,6 +17,11 @@ const setMovies = (payload) => ({
     payload
 });
 
+const sortMovies = (payload) => ({
+    type: Actions.SORT_MOVIES,
+    payload
+})
+
 const loadData = (payload) => ({
     type: Actions.LOAD_DATA,
     payload
@@ -35,8 +40,23 @@ const fetchMovies = (fetchName, pageNumber, order) => {
         fetch(url).
         then((res) => {return res.json()}).
         then((data) => {
-            //console.log(data);
             dispatch(setMovies(data))
+        }).
+        catch((error) => {
+            console.log(error);
+        })
+    }
+}
+
+const fetchSortMovies = (fetchName, pageNumber, order) => {
+    return (dispatch) => {
+        const url = `https://api.themoviedb.org/3/discover/movie?sort_by=${fetchName}.${order}&api_key=0f207dd93db6d0bd617a7ee5e6e6edee&page=${pageNumber}&append_to_response=production_companies`;
+        fetch(url).
+        then((res) => {return res.json()}).
+        then((data) => {
+            data = {...data, sortByName: fetchName, order: order}
+            //console.log(data);
+            dispatch(sortMovies(data));
         });
     }
 }
@@ -46,5 +66,6 @@ export const actions = {
     blockMovie,
     fetchMovies,
     loadData,
-    deleteLikedMovie
+    deleteLikedMovie,
+    fetchSortMovies
 };

@@ -2,9 +2,10 @@ import React from "react";
 import LikedMovie from "../../components/likedMovie";
 import "./movieLikeList.css"
 
+// Loop through the likedList in global store
+// print all the liked movies
 function MovieLikeList(props){
   //console.log(props.likedList);
- 
   return (
     <div>
       <header>

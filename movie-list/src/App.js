@@ -5,9 +5,10 @@ import Home from './containers/home/home';
 import MovieList from './containers/movieList/movieList';
 import MovieLikeList from './containers/movieLikeList/movieLikeList';
 import MovieBlockList from './containers/movieBlockList/movieBlockList';
-// import NavMenu from './components/navMenu';
+import NavMenu from './components/navMenu';
 import {actions} from './actionCreators';
 import {connect} from 'react-redux';
+import image from './assets/moviedb.png'
 
 
 function App(props) {
@@ -15,36 +16,10 @@ function App(props) {
     <div className="App">
       <Router>
         <header>
-          <h1>Top Rated Movies List</h1>
+          <h1 className="fst-italic">Top Rated Movies List</h1>
         </header>
         <div className="nav-container-menu">
-          {/* <NavMenu></NavMenu> */}
-          <nav className="nav-container-menu-items">
-              <Link className="btn btn-primary btn-lg" role="button" to="/">
-                Home
-              </Link>
-              <Link
-                className="btn btn-primary btn-lg"
-                role="button"
-                to="/movieList"
-              >
-                Movie List
-              </Link>
-              <Link
-                className="btn btn-primary btn-lg"
-                role="button"
-                to="/movieBlockList"
-              >
-                Movie Block List
-              </Link>
-              <Link
-                className="btn btn-primary btn-lg"
-                role="button"
-                to="/movieLikeList"
-              >
-                Movie Like List
-              </Link>
-          </nav>
+          <NavMenu></NavMenu>
         </div>
 
         <Routes>
@@ -58,7 +33,8 @@ function App(props) {
   );
 }
 
-
+// map all state in global store into props of App component and pass its props
+// to children components(MovieList, MovieBlockList, MovieLikeList)
 const mapStateToProps = (state) => ({
   initialPageNumber: state.initialPageNumber,
   initialTotalResults: state.initialTotalResults,
@@ -68,7 +44,9 @@ const mapStateToProps = (state) => ({
   blockedList: state.blockedList,
   loadedPages: state.loadedPages,
   loadedData: state.loadedData,
-  pageNumber: state.pageNumber
+  pageNumber: state.pageNumber,
+  sortByName: state.sortByName,
+  order: state.order
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -80,7 +58,8 @@ const mapDispatchToProps = (dispatch) => {
       blockMovie: (movie) => dispatch(actions.blockMovie(movie)),
       fetchMovies: (name, number, order) => dispatch(actions.fetchMovies(name, number, order)),
       loadData: (number) => dispatch(actions.loadData(number)),
-      deleteLikedMovie: (index) => dispatch(actions.deleteLikedMovie(index))
+      deleteLikedMovie: (index) => dispatch(actions.deleteLikedMovie(index)),
+      fetchSortMovies: (name, number, order) => dispatch(actions.fetchSortMovies(name, number, order))
   };
 };
 
