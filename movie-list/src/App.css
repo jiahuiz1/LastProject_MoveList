@@ -3,9 +3,9 @@ h1 {
 }
 
 .App {
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  
+
 }
 
 .nav-container-menu {
@@ -13,11 +13,13 @@ h1 {
   margin: auto;
   display: flex;
   justify-content: center;
+
 }
-.nav-container-menu .nav-container-menu-items {
+/* .nav-container-menu .nav-container-menu-items {
   padding-left: 50px;
   overflow: hidden;
-}
+} */
+
 .nav-container-menu-items > *{
   float: left;
   padding: 10px;

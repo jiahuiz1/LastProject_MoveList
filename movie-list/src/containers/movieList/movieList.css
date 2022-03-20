@@ -3,8 +3,18 @@
     box-sizing: border-box;
 }
 
+
+.MovieListPage{
+    margin-top: 20px;
+}
+
+.sortButtons{
+    padding-left: 25px;
+}
+
 .sortButtons Button{
-    margin: 10px;
+    margin-right: 5px;
+
 }
 
 .pageNav{
@@ -20,16 +30,23 @@
 
 
 .movieBlock{
-    padding: 30px;
+
+    margin: 30px;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .movie{
-    width: 450px;
+
+    width: 420px;
     display: flex;
     flex-direction: column;
+    background-color:darkslategrey;
+    margin: 1rem;
+    color:bisque;
+
 }
 
 .movie Button{
@@ -37,11 +54,12 @@
     margin-left: 20px
 }
 
-.image{
+
+.movie-image{
     max-width: 100%;
 }
 
-.movieInfo{
+.movie-Info{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 600;
 }
