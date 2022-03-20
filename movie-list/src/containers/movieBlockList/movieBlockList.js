@@ -1,4 +1,5 @@
 import React from "react";
+
 import BlockedMovie from "../../components/blockedMovie";
 import "./movieBlockList.css"
 
@@ -17,6 +18,7 @@ function MovieBlockList(props){
           })}
         </div>
       </main>
+
     </div>
   );
 };

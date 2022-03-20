@@ -1,6 +1,7 @@
 import {Button, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
+
 import "../containers/movieLikeList/movieLikeList.css";
 
 
@@ -9,10 +10,13 @@ function Movie(props){
     const item = props.item;
     const id = item.id;
 
+
     function handleLike() {
         // set the current movie's like field in movieList to true
         item.like = true;
+
         
+
 
         // loop through the loaded data to find the current movie
         // then set like field to true
@@ -28,6 +32,7 @@ function Movie(props){
         props.likeMovie(item);
     }
     function handleBlock() {
+
         //if the movie is liked we need to unlike the moive then block the movie 
         // if(item.like===true){
         //     item.like = false;
@@ -53,10 +58,12 @@ function Movie(props){
             });
         });
         props.blockMovie(item);
+
     }
 
     return(
         <div className="movie">
+
             <Image className="movie-image"src={IMGPATH + item.poster_path} alt="Image not available"/>
             <div>
                 <Button variant="danger" disabled={item.like ? true : false} onClick={handleLike}>{item.like ? "Liked" : "Like"}</Button>
@@ -66,6 +73,7 @@ function Movie(props){
                 <p>{item.original_title}</p>
                 <p>Release Date: {item.release_date}</p>
                 <p>Vote Count: {item.vote_count}  | Average Score:{item.vote_average}</p>
+
                 <p>{item.overview}</p>
             </div>
         </div>

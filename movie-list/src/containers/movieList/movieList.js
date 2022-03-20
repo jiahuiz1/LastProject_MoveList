@@ -6,21 +6,27 @@ import {useEffect} from 'react';
 
 function MovieList(props){
     let pageNumber = props.pageNumber;
+
     let sortByName = props.sortByName; // replace sortByName with popularity
     let order = props.order;
+
     let loadedPages = Array.from(props.loadedPages);
 
     // initially load the first page of movie list
     useEffect(() => {
         // if first time mounts, fetch data
         // if not, get data from previous loaded data
+
         if(pageNumber === 0) props.fetchMovies(sortByName, 1, order);
+
         else{
             if(loadedPages.includes(pageNumber)){
                 props.loadData(pageNumber);
             }
             else{
+
                 props.fetchMovies(sortByName, pageNumber, order);
+
             }
         }
     }, []);
@@ -32,7 +38,9 @@ function MovieList(props){
             if (loadedPages.includes(pageNumber)){
                 props.loadData(pageNumber)
             }
+
             else props.fetchMovies(sortByName, pageNumber, order);
+
         }   
 
         else if(e.target.innerHTML === "Prev"){
@@ -40,6 +48,7 @@ function MovieList(props){
             if (loadedPages.includes(pageNumber)){
                 props.loadData(pageNumber)
             }
+
             else props.fetchMovies(sortByName, pageNumber, order);
         }      
     }
@@ -85,6 +94,7 @@ function MovieList(props){
 
     //console.log(props.movieList);
     //console.log(props.loadedData);
+
     return(
         <div className="MovieListPage">
             <header>
@@ -92,6 +102,7 @@ function MovieList(props){
             </header>
             <main>
                 <div className="sortButtons">
+
                     <Button size="lg" variant="outline-success" onClick={handleSort}>Title ↓</Button>
                     <Button size="lg" variant="outline-success" onClick={handleSort}>Vote Count ↓</Button>
                     <Button size="lg" variant="outline-success" onClick={handleSort}>Vote Average ↓</Button>
@@ -117,6 +128,7 @@ function MovieList(props){
                         }
                     })}
                 </div>
+
 
             </main>
 
