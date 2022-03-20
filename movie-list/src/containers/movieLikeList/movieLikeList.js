@@ -4,9 +4,9 @@ import "./movieLikeList.css"
 
 function MovieLikeList(props){
   //console.log(props.likedList);
-  console.log(props.blockedList);
+  //console.log(props.blockedList);
   return (
-    <div>
+    <div className="likedListPage">
       <header>
         <h2>Movie Like List</h2>
       </header>

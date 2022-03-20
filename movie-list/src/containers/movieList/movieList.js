@@ -84,7 +84,7 @@ function MovieList(props){
     }
 
     //console.log(props.movieList);
-    console.log(props.loadedData);
+    //console.log(props.loadedData);
     return(
         <div className="MovieListPage">
             <header>
@@ -92,14 +92,14 @@ function MovieList(props){
             </header>
             <main>
                 <div className="sortButtons">
-                    <Button size="lg" onClick={handleSort}>Title ↓</Button>
-                    <Button size="lg" onClick={handleSort}>Vote Count ↓</Button>
-                    <Button size="lg" onClick={handleSort}>Vote Average ↓</Button>
-                    <Button size="lg" onClick={handleSort}>Release Date ↓</Button>
+                    <Button size="lg" variant="outline-success" onClick={handleSort}>Title ↓</Button>
+                    <Button size="lg" variant="outline-success" onClick={handleSort}>Vote Count ↓</Button>
+                    <Button size="lg" variant="outline-success" onClick={handleSort}>Vote Average ↓</Button>
+                    <Button size="lg" variant="outline-success" onClick={handleSort}>Release Date ↓</Button>
                 </div>
                 {props.movieList.length===0 && <Spinner animation="border" variant="primary"/>}
                 <div className="pageNav">
-                    <Button variant="dark" onClick={handlePageNav}>Prev</Button>
+                    <Button variant="dark" onClick={handlePageNav} disabled={pageNumber === 1 ? true : false}>Prev</Button>
                     <div className="pageInfo">Page {pageNumber}/Total {props.initialTotalPages} pages of {props.initialTotalResults} results</div>
                     <Button variant="dark" onClick={handlePageNav}>Next</Button>
                 </div>

@@ -15,7 +15,7 @@ function App(props) {
     <div className="App">
       <Router>
         <header>
-          <h1>Top Rated Movies List</h1>
+          <h1 className="fst-italic">Top Rated Movies List</h1>
         </header>
         <div className="nav-container-menu">
           <NavMenu></NavMenu>

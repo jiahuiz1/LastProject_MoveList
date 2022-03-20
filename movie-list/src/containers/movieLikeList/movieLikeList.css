@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+.likedListPage{
+    margin-top: 20px;
+}
+
 .likedMovieBlock{
     display: flex;
     flex-wrap: wrap;
@@ -13,7 +17,6 @@
     width: 290px;
     margin: 0.5rem;
     position: relative;
-    /* background-color: darkslategrey; */
 }
 
 .likedMovie-Button{

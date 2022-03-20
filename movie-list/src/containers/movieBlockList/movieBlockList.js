@@ -1,13 +1,12 @@
 import React from "react";
 import BlockedMovie from "../../components/blockedMovie";
 import "./movieBlockList.css"
-import "../movieLikeList/movieLikeList.css"
 
 function MovieBlockList(props){
   //console.log(props.likedList);
-  console.log(props.blockedList);
+  //console.log(props.blockedList);
   return (
-    <div>
+    <div className="blockListPage">
       <header>
         <h2>Movie Block List</h2>
       </header>
