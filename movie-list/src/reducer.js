@@ -55,7 +55,7 @@ const reducer = (state = initialState, action = {}) => {
         case Actions.SORT_MOVIES:
             // add a like field for each movie's info
             action.payload.results.forEach((element, index) => {
-                action.payload.results[index] = {...element, like: false};
+                action.payload.results[index] = {...element, like: false, block: false};
             })    
             
             state.loadedPages.clear();

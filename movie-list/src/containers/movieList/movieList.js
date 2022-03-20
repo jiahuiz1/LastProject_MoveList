@@ -47,6 +47,7 @@ function MovieList(props){
     // every time you click one of the sort buttons, it will clear the loadedDat
     // load the first page of the sorted list of movies
     const handleSort = (e) => {
+        console.log(pageNumber);
          if(e.target.innerHTML === "Title ↓"){
             props.fetchSortMovies("original_title", 1, "desc");
             e.target.innerHTML = "Title ↑";
@@ -102,6 +103,7 @@ function MovieList(props){
                     <div className="pageInfo">Page {pageNumber}/Total {props.initialTotalPages} pages of {props.initialTotalResults} results</div>
                     <Button variant="dark" onClick={handlePageNav}>Next</Button>
                 </div>
+
                 <div className="movieBlock">
                     {props.movieList.length > 0 && props.movieList.map((item, index) => {
                         if(item.block===true){
@@ -115,6 +117,7 @@ function MovieList(props){
                         }
                     })}
                 </div>
+
             </main>
 
         </div>
