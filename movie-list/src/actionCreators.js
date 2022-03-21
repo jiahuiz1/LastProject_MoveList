@@ -12,15 +12,19 @@ const blockMovie = (payload) => ({
 })
 
 
+
+
 const setMovies = (payload) => ({
     type: Actions.SET_MOVIES,
     payload
 });
 
+
 const sortMovies = (payload) => ({
     type: Actions.SORT_MOVIES,
     payload
 })
+
 
 const loadData = (payload) => ({
     type: Actions.LOAD_DATA,
@@ -31,6 +35,7 @@ const deleteLikedMovie = (payload) => ({
     type: Actions.DELETE_LIKE,
     payload
 })
+
 const blockLikedMovie = (payload) => ({
     type: Actions.BLOCK_LIKE,
     payload
@@ -45,6 +50,7 @@ const likeBlockedMovie = (payload) => ({
 })
 
 
+
 // thunk
 // fetch data based on the sort-by type and page number
 const fetchMovies = (fetchName, pageNumber, order) => {
@@ -54,6 +60,7 @@ const fetchMovies = (fetchName, pageNumber, order) => {
         then((res) => {return res.json()}).
         then((data) => {
             //console.log(data);
+
             // if(fetchName === "vote_count"){
             //     dispatch(sortMovies(data));
             // }
@@ -74,6 +81,7 @@ const fetchSortMovies = (fetchName, pageNumber, order) => {
             data = {...data, sortByName: fetchName, order: order}
             //console.log(data);
             dispatch(sortMovies(data));
+
         });
     }
 }
@@ -83,9 +91,11 @@ export const actions = {
     blockMovie,
     fetchMovies,
     loadData,
+
     deleteLikedMovie,
     blockLikedMovie,
     deleteBlockedMovie,
     likeBlockedMovie,
     fetchSortMovies
+
 };

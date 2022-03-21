@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 function MovieLikeList({data}){
   return (
     <div className="likedListPage">
+
       <header>
         <h2>Movie Like List</h2>
       </header>

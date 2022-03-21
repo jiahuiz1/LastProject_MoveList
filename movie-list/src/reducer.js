@@ -11,9 +11,11 @@ const initialState = {
     likedList: [],
     blockedList: [],
     loadedPages: setPage, // store fetched pages and data
+
     loadedData: [],
     sortByName: "popularity",
     order: "desc"
+
 }
 
 const reducer = (state = initialState, action = {}) => {
@@ -27,21 +29,27 @@ const reducer = (state = initialState, action = {}) => {
         
         case Actions.BLOCK:
             return{
+
                 ...state,
                 blockedList: [...state.blockedList, {...action.payload}]
+
             };
 
         // initialize the movieList
         case Actions.SET_MOVIES:
             // add a like field for each movie's info
             action.payload.results.forEach((element, index) => {
+
                 action.payload.results[index] = {...element, like: false, block: false};
+
             })
             
             //console.log(action.payload.results);
 
             // fix later
+
             state.loadedPages.add(action.payload.page);
+
 
             return {
                 ...state,
@@ -51,6 +59,7 @@ const reducer = (state = initialState, action = {}) => {
                 movieList: [...action.payload.results],
                 loadedData: [...state.loadedData, {...action.payload}]
             };
+
 
         case Actions.SORT_MOVIES:
             // add a like field for each movie's info
@@ -115,6 +124,7 @@ const reducer = (state = initialState, action = {}) => {
                 loadedData: [...state.loadedData]
             }
 
+
         case Actions.BLOCK_LIKE:
             const id2 = state.likedList[action.payload].id;
             
@@ -158,6 +168,7 @@ const reducer = (state = initialState, action = {}) => {
             ...state,
              blockedList: [...state.blockedList], //adding the movie to the blockList
         }
+
         default:
             return {...state};
     }

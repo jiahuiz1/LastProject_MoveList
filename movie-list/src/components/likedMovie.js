@@ -1,3 +1,4 @@
+
 import {Button, Image, Stack} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import checkGenre from '../checkGenre';
@@ -16,10 +17,12 @@ function LikedMovie({info, item, index}){
             info.blockLikedMovie(index);
             info.blockMovie(item);
         }
+
     }
 
     return(
         <div className="likedMovie">
+
             <Image className="likedMovie-image" src={IMGPATH + item.poster_path}/>
             <Button className="likedMovie-Button" variant="warning" onClick={handleLikeMovie}>Delete</Button>
             <Button className="likedMovie-Button" variant="secondary" onClick={handleLikeMovie}>Block</Button>
@@ -29,6 +32,7 @@ function LikedMovie({info, item, index}){
                     return (<span style={{backgroundColor: result.color}}>{result.name}</span>)
                 })}
             </Stack>
+
         </div>
     );
 }

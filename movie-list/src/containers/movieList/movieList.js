@@ -20,7 +20,7 @@ function MovieList({data}){
             if(loadedPages.includes(pageNumber)){
                 data.loadData(pageNumber);
             }
-            else{
+            else
                 data.fetchMovies(sortByName, pageNumber, order);
             }
         }
@@ -93,6 +93,7 @@ function MovieList({data}){
             </header>
             <main>
                 <div className="sortButtons">
+
                     <Button size="lg" variant="outline-success" onClick={handleSort}>Title ↓</Button>
                     <Button size="lg" variant="outline-success" onClick={handleSort}>Vote Count ↓</Button>
                     <Button size="lg" variant="outline-success" onClick={handleSort}>Vote Average ↓</Button>
@@ -118,6 +119,7 @@ function MovieList({data}){
                         }
                     })}
                 </div>
+
 
             </main>
 
