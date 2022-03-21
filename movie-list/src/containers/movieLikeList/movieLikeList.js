@@ -1,11 +1,10 @@
 import React from "react";
 import LikedMovie from "../../components/likedMovie";
-import "./movieLikeList.css"
+import "./movieLikeList.css";
+import PropTypes from 'prop-types';
 
-function MovieLikeList(props){
-  //console.log(props.likedList);
-
-  //console.log(props.blockedList);
+// Liked List component, loop through the likedList to show all the liked movies
+function MovieLikeList({data}){
   return (
     <div className="likedListPage">
 
@@ -14,13 +13,23 @@ function MovieLikeList(props){
       </header>
       <main>
         <div className="likedMovieBlock">
-          {props.likedList.map((item, index) => {
-            return <LikedMovie key={index} {...props} item={item} index={index}/>
+          {data.likedList.map((item, index) => {
+            return <LikedMovie key={index} info={data} item={item} index={index}/>
           })}
         </div>
       </main>
     </div>
   );
 };
+
+MovieLikeList.propTypes = {
+  data: PropTypes.shape({
+      movieList: PropTypes.arrayOf(PropTypes.object),
+      likedList: PropTypes.arrayOf(PropTypes.object),
+      blockedList: PropTypes.arrayOf(PropTypes.object),
+      loadedPages: PropTypes.object,
+      loadedData: PropTypes.arrayOf(PropTypes.object)
+  })
+}
 
 export default MovieLikeList;
