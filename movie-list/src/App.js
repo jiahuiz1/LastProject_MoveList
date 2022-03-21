@@ -23,18 +23,17 @@ function App(props) {
 
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/movieList" element={<MovieList {...props}/>}/>
-          <Route path="/movieBlockList" element={<MovieBlockList {...props}/>}/>
-          <Route path="/movieLikeList" element={<MovieLikeList {...props}/>}/>
+          <Route path="/movieList" element={<MovieList data={props}/>}/>
+          <Route path="/movieBlockList" element={<MovieBlockList data={props}/>}/>
+          <Route path="/movieLikeList" element={<MovieLikeList data={props}/>}/>
         </Routes>
       </Router>
     </div>
   );
 }
 
-
+// map all states in global store to props of App component
 const mapStateToProps = (state) => ({
-  initialPageNumber: state.initialPageNumber,
   initialTotalResults: state.initialTotalResults,
   initialTotalPages: state.initialTotalResults,
   movieList: state.movieList,

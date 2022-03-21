@@ -1,19 +1,20 @@
 import {Button, Image, Stack} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import checkGenre from '../checkGenre';
+import PropTypes from 'prop-types';
 
-function LikedMovie(props){
-    const item = props.item;
+// structure of each liked movie
+function LikedMovie({info, item, index}){
     const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
     const handleLikeMovie = (e)=>{
         if(e.target.innerHTML === "Delete"){
-            props.deleteLikedMovie(props.index);
+            info.deleteLikedMovie(index);
         }
         //console.log(props.likedList);
         else if(e.target.innerHTML === "Block") {
-            props.blockLikedMovie(props.index);
-            props.blockMovie(item);
+            info.blockLikedMovie(index);
+            info.blockMovie(item);
         }
     }
 
@@ -31,5 +32,17 @@ function LikedMovie(props){
         </div>
     );
 }
+
+LikedMovie.propTypes = {
+    info: PropTypes.shape({
+        movieList: PropTypes.arrayOf(PropTypes.object),
+        likedList: PropTypes.arrayOf(PropTypes.object),
+        blockedList: PropTypes.arrayOf(PropTypes.object),
+        loadedPages: PropTypes.object,
+        loadedData: PropTypes.arrayOf(PropTypes.object)
+    }),
+    item: PropTypes.object,
+    index: PropTypes.number
+  }
 
 export default LikedMovie;

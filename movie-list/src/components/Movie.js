@@ -2,11 +2,12 @@ import {Button, Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import "../containers/movieLikeList/movieLikeList.css";
+import PropTypes from 'prop-types';
 
 
-function Movie(props){
+function Movie({info, item}){
     const IMGPATH = "https://image.tmdb.org/t/p/w1280";
-    const item = props.item;
+    //const item = props.item;
     const id = item.id;
 
     function handleLike() {
@@ -16,35 +17,21 @@ function Movie(props){
 
         // loop through the loaded data to find the current movie
         // then set like field to true
-        props.loadedData.forEach((e1) => {
+        info.loadedData.forEach((e1) => {
             e1.results.forEach((e2) => {
                 if(e2.id === id){
                     e2.like = true;
                 }
             });
         });
-
         //adding selected movie id to like list 
-        props.likeMovie(item);
+        info.likeMovie(item);
     }
     function handleBlock() {
-        //if the movie is liked we need to unlike the moive then block the movie 
-        // if(item.like===true){
-        //     item.like = false;
-        //     // loop through the loaded data to find the current movie
-        //     // then set like field to true
-        //     props.loadedData.forEach((e1) => {
-        //         e1.results.forEach((e2) => {
-        //             if(e2.id === id){
-        //                 e2.like = false;
-        //             }
-        //         });
-        //     });
-        // }
         item.block = null;   
         // loop through the loaded data to find the current movie
         // then set like field to true
-        props.loadedData.forEach((e1) => {
+        info.loadedData.forEach((e1) => {
             e1.results.forEach((e2) => {
                 if(e2.id === id){
                     e2.like = false;
@@ -52,7 +39,7 @@ function Movie(props){
                 }
             });
         });
-        props.blockMovie(item);
+        info.blockMovie(item);
     }
 
     return(
@@ -70,6 +57,17 @@ function Movie(props){
             </div>
         </div>
     );
+}
+
+Movie.propTypes = {
+    info: PropTypes.shape({
+        movieList: PropTypes.arrayOf(PropTypes.object),
+        likedList: PropTypes.arrayOf(PropTypes.object),
+        blockedList: PropTypes.arrayOf(PropTypes.object),
+        loadedPages: PropTypes.object,
+        loadedData: PropTypes.arrayOf(PropTypes.object)
+    }),
+    item: PropTypes.object
 }
 
 export default Movie;
