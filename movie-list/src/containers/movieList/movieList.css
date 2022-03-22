@@ -1,0 +1,65 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+
+.MovieListPage{
+    margin-top: 20px;
+}
+
+.sortButtons{
+    padding-left: 25px;
+}
+
+.sortButtons Button{
+    margin-right: 5px;
+
+}
+
+.pageNav{
+    border: 1px dotted black;
+    border-radius: 5px;
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: large;
+}
+
+
+.movieBlock{
+
+    margin: 30px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.movie{
+
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    background-color:darkslategrey;
+    margin: 1rem;
+    color:bisque;
+
+}
+
+.movie Button{
+    margin-right: 20px;
+    margin-left: 20px
+}
+
+
+.movie-image{
+    max-width: 100%;
+}
+
+.movie-Info{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}

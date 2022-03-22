@@ -1,35 +1,76 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from './containers/home/home';
+import MovieList from './containers/movieList/movieList';
+import MovieLikeList from './containers/movieLikeList/movieLikeList';
 
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import MovieBlockList from './containers/movieBlockList/movieBlockList';
+import NavMenu from './components/navMenu';
 
-function App() {
+import {actions} from './actionCreators';
+import {connect} from 'react-redux';
+
+
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button>Bootstrap</Button>
-        <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-  integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-  crossorigin="anonymous"
-/>
-      </header>
+      <Router>
+        <header>
+
+          <h1 className="fst-italic">Top Rated Movies List</h1>
+        </header>
+        <div className="nav-container-menu">
+          <NavMenu></NavMenu>
+
+        </div>
+
+        <Routes>
+          <Route path="/" element={<Home/>}/
+          <Route path="/movieList" element={<MovieList data={props}/>}/>
+          <Route path="/movieBlockList" element={<MovieBlockList data={props}/>}/>
+          <Route path="/movieLikeList" element={<MovieLikeList data={props}/>}/>
+        </Routes>
+      </Router>
     </div>
   );
 }
 
-export default App;
+// map all states in global store to props of App component
+const mapStateToProps = (state) => ({
+  initialTotalResults: state.initialTotalResults,
+  initialTotalPages: state.initialTotalResults,
+  movieList: state.movieList,
+  likedList: state.likedList,
+  blockedList: state.blockedList,
+  loadedPages: state.loadedPages,
+  loadedData: state.loadedData,
+
+  pageNumber: state.pageNumber,
+  sortByName: state.sortByName,
+  order: state.order
+
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      // click sorting buttons will change the fetchName parameter
+      // click pageNumber will change the page Number
+      // After changing , call this function
+      likeMovie: (movie) => dispatch(actions.likeMovie(movie)),
+
+      blockMovie: (movie) => dispatch(actions.blockMovie(movie)),
+      fetchMovies: (name, number, order) => dispatch(actions.fetchMovies(name, number, order)),
+      loadData: (number) => dispatch(actions.loadData(number)),
+      deleteLikedMovie: (index) => dispatch(actions.deleteLikedMovie(index)),
+      deleteBlockedMovie: (index) => dispatch(actions.deleteBlockedMovie(index)),
+      blockLikedMovie:(index)=> dispatch(actions.blockLikedMovie(index)),
+      likeBlockedMovie: (index) => dispatch(actions.likeBlockedMovie(index)),
+      fetchSortMovies: (name, number, order) => dispatch(actions.fetchSortMovies(name, number, order))
+      
+
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
